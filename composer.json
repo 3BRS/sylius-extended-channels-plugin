@@ -1,5 +1,5 @@
 {
-	"name": "mangoweb-sylius/sylius-extended-channels",
+	"name": "3brs/sylius-extended-channels-plugin",
 	"type": "sylius-plugin",
 	"description": "Extended channels plugin for Sylius",
 	"license": "MIT",
