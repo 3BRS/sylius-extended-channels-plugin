@@ -119,7 +119,6 @@ services:
         arguments:
             $eventDispatcher: '@event_dispatcher'
             $router: '@router'
-            $flashBag: '@session.flash_bag'
             $translator: '@translator'
             $productRepository: '@sylius.repository.product'
             $productVariantRepository: '@sylius.repository.product_variant'
@@ -129,7 +128,6 @@ services:
         public: true
         arguments:
             $router: '@router'
-            $flashBag: '@session.flash_bag'
             $translator: '@translator'
             $productRepository: '@sylius.repository.product'
             $twig: '@twig'

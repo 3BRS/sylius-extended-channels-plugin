@@ -17,7 +17,6 @@ use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 use Symfony\Component\Routing\RouterInterface;
 use Twig\Environment;
 use Symfony\Contracts\Translation\TranslatorInterface;
@@ -28,10 +27,6 @@ class ManageProductCategoriesController
 	 * @var RouterInterface
 	 */
 	private $router;
-	/**
-	 * @var FlashBagInterface
-	 */
-	private $flashBag;
 	/**
 	 * @var TranslatorInterface
 	 */
@@ -69,7 +64,6 @@ class ManageProductCategoriesController
 
 	public function __construct(
 		TranslatorInterface $translator,
-		FlashBagInterface $flashBag,
 		RouterInterface $router,
 		ProductRepositoryInterface $productRepository,
 		Environment $twig,
@@ -80,7 +74,6 @@ class ManageProductCategoriesController
 		FactoryInterface $productTaxonFactory
 	) {
 		$this->router = $router;
-		$this->flashBag = $flashBag;
 		$this->translator = $translator;
 		$this->productRepository = $productRepository;
 		$this->twig = $twig;
@@ -106,7 +99,7 @@ class ManageProductCategoriesController
 			$this->manageProducts($request, $dummyProduct, $productIds);
 
 			$message = $this->translator->trans('mango-sylius.admin.manage_product_categories.saved');
-			$this->flashBag->add('success', $message);
+			$request->getSession()->getFlashBag()->add('success', $message);
 
 			// Eg. for update products in elasticsearch
 			$event = new GenericEvent($productIds);
